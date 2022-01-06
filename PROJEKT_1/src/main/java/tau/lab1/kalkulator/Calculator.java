@@ -19,15 +19,16 @@ public class Calculator {
 //    }
 
     double division(int a, int b) {
-        return a / b;
+        return a / numberValidator(b);
     }
 
     /**
      * will be used with division
      **/
-    void numberValidator(int b) {
+    Integer numberValidator(int b) {
         if (b == 0) {
             throw new IllegalArgumentException("Can not divide by 0");
-        }
+        } else
+            return b;
     }
 }

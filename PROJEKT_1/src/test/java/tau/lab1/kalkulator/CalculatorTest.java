@@ -4,12 +4,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorTest {
     private static final Calculator calculator = new Calculator();
     private static Integer positiveA;
     private static Integer positiveB;
+    private static Integer positiveC;
+    private static Integer positiveD;
     private static Integer negativeA;
     private static Integer negativeB;
     private static Integer zeroNumber;
@@ -18,6 +23,8 @@ class CalculatorTest {
     void setUp() {
         positiveA = 5;
         positiveB = 7;
+        positiveC = 8;
+        positiveD = 2;
         negativeA = -10;
         negativeB = -1;
         zeroNumber = 0;
@@ -76,13 +83,48 @@ class CalculatorTest {
     }
 
     @Test
-    void whenZeroExceptionThrownAndOneNumberIsPositive() {
-        assertThrows(IllegalArgumentException.class, () -> calculator.numberValidator(positiveB));
-    }
-
-    @Test
     void whenTwoNumbersAreDifferent() {
         assertNotEquals(positiveA, positiveB);
     }
 
+    @Test
+    void exceptionThrownWhenDividingByZero() {
+        assertThrows(IllegalArgumentException.class, () -> calculator.division(positiveA, zeroNumber));
+    }
+
+    @Test
+    void dividingTwoNegativeNumbers() {
+        double result = calculator.division(negativeA, negativeB);
+        assertEquals(10, result);
+    }
+
+    @Test
+    void dividingTwoPositiveBumbers() {
+        double result = calculator.division(positiveC, positiveD);
+        assertEquals(4, result);
+    }
+
+    @Test
+    void dividingPositiveNumberByNegativeNumber() {
+        double result = calculator.division(positiveC, negativeB);
+        assertEquals(-8, result);
+    }
+
+    @Test
+    void dividingNegativeNumberByPositiveNumber() {
+        double result = calculator.division(negativeA, positiveD);
+        assertEquals(-5, result);
+    }
+
+    @Test
+    void dividingZeroByNegativeNumber() {
+        double result = calculator.division(zeroNumber, negativeA);
+        assertEquals(0, result);
+    }
+
+    @Test
+    void joiningAdditionWithDivision() {
+        double result = calculator.addition(positiveA, (int) calculator.division(positiveC, positiveD));
+        assertEquals(9, result);
+    }
 }

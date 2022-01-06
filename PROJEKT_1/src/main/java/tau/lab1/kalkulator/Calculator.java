@@ -14,12 +14,20 @@ public class Calculator {
         return a - b;
     }
 
+//    int multiplication(int a, int b) {
+//        return a * b;
+//    }
+
+    double division(int a, int b) {
+        return a / b;
+    }
+
     /**
-     * will be used with multiplication and division
+     * will be used with division
      **/
-    void numberValidator(int a, int b) {
-        if (a == 0 || b == 0) {
-            throw new IllegalArgumentException();
+    void numberValidator(int b) {
+        if (b == 0) {
+            throw new IllegalArgumentException("Can not divide by 0");
         }
     }
 }

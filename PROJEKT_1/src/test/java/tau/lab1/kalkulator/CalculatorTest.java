@@ -67,17 +67,17 @@ class CalculatorTest {
 
     @Test
     void whenZeroExceptionThrown() {
-        assertThrows(IllegalArgumentException.class, () -> calculator.numberValidator(zeroNumber, zeroNumber));
+        assertThrows(IllegalArgumentException.class, () -> calculator.numberValidator(zeroNumber));
     }
 
     @Test
     void whenValidatedNumberIsDifferentThanZero() {
-        assertDoesNotThrow(() -> calculator.numberValidator(positiveA, positiveB));
+        assertDoesNotThrow(() -> calculator.numberValidator(positiveB));
     }
 
     @Test
     void whenZeroExceptionThrownAndOneNumberIsPositive() {
-        assertThrows(IllegalArgumentException.class, () -> calculator.numberValidator(zeroNumber, positiveB));
+        assertThrows(IllegalArgumentException.class, () -> calculator.numberValidator(positiveB));
     }
 
     @Test

@@ -14,9 +14,9 @@ public class Calculator {
         return a - b;
     }
 
-//    int multiplication(int a, int b) {
-//        return a * b;
-//    }
+    public int multiplication(int a, int b) {
+        return a * b;
+    }
 
     double division(int a, int b) {
         return a / numberValidator(b);
